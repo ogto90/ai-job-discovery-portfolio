@@ -11,7 +11,7 @@ records the trust boundaries, abuse cases, controls, and residual risks.
 | 2. Security regressions | Required hosted gate for SSRF, HTTP privacy, document sandbox policy/fail-closed behavior, application privacy, and disposable database authorization; four real compiler-isolation cases run locally | [Runner](../scripts/security/run_regressions.py), [database tests](../tests/security/test_database_authorization.py), [CI](../.github/workflows/security-regressions.yml) | Hosted portable cases required; full 170-case Python suite verified locally on a namespace-capable host |
 | 3. Code and dependencies | Required CodeQL workflow, Semgrep source rules, locked Python/Bun graphs, audit canaries, dependency review, bounded advisory exceptions, Dependabot | [CodeQL](../.github/workflows/codeql.yml), [rules](../security/semgrep.yml), [audit runner](../scripts/security/check_code_dependencies.py), [CI](../.github/workflows/code-dependencies.yml), [dependency review](../.github/workflows/dependency-review.yml) | Implemented; public CI verifies pull requests and the published snapshot |
 | 4. Threat model and AI boundary | Assets, flows, eight abuse cases, control mapping, model-data inventory, offline AI safeguard tests | [Threat model](security-threat-model.md), [AI safeguard tests](../tests/test_interview_preparation_pack.py) | Documented and implemented within the stated limits |
-| 5. Enforcement and presentation | Required CI, protected security files, private reporting route, accurate README | [Owner map](../.github/CODEOWNERS), [reporting policy](../SECURITY.md), [README](../README.md), [blocked probe](https://github.com/ogto90/ai-job-discovery-portfolio/pulls?q=is%3Apr+is%3Aclosed+label%3Asecurity-probe) | Enforcement active; the unsafe-code probe PR was blocked and closed |
+| 5. Enforcement and presentation | Required CI, protected security files, private reporting route, accurate README | [Owner map](../.github/CODEOWNERS), [reporting policy](../SECURITY.md), [README](../README.md), [blocked probe](https://github.com/ogto90/pairrole/pulls?q=is%3Apr+is%3Aclosed+label%3Asecurity-probe) | Enforcement active; the unsafe-code probe PR was blocked and closed |
 
 The three repository CI workflows run on pull requests and `main` pushes. They
 use read-only tokens and no application secrets. The secret scan also runs
@@ -65,7 +65,7 @@ review workflow checks pull requests.
 Protected `main` requires a pull request, current passing results from nine
 named checks, conversation resolution, and linear history. The rule applies to
 administrators and disallows force pushes and deletion. A temporary
-`eval(user_input)` [probe PR](https://github.com/ogto90/ai-job-discovery-portfolio/pulls?q=is%3Apr+is%3Aclosed+label%3Asecurity-probe)
+`eval(user_input)` [probe PR](https://github.com/ogto90/pairrole/pulls?q=is%3Apr+is%3Aclosed+label%3Asecurity-probe)
 failed the required source scan, GitHub reported the PR blocked, and the PR was
 closed without merging. CODEOWNERS requests security-file review, but the
 single-owner repository requires zero independent approving reviews.
