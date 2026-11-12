@@ -1,8 +1,10 @@
 # PairRole
 
-**From scattered listings to informed applications.**
+**Job research and application tracking, with security controls for untrusted inputs.**
 
-A personal job-search workspace that discovers roles, evaluates them against CV evidence, and tracks applications through interview preparation. I built it to connect the search process with the decisions and documents that follow.
+A personal workspace that discovers roles, evaluates them against CV evidence, and tracks applications through interview preparation. It combines Python/API automation, structured AI workflows and application security.
+
+**My contribution:** product design, workflow direction and security requirements, using OpenAI Codex for implementation. The code and tests below show the controls, engineering choices and limitations behind the application.
 
 This public portfolio copy uses synthetic candidate evidence and contains no live
 credentials or CVs. Discovery and summary Actions run manually after a user
@@ -10,7 +12,7 @@ configures their own private database and environment secrets.
 
 **Python · TypeScript · Streamlit · Supabase/PostgreSQL · OpenAI API · GitHub Actions**
 
-[Engineering decisions](#engineering-decisions) · [Run locally](#run-locally) · [Technical guide](docs/technical-guide.md)
+[Security controls](#security) · [Engineering decisions](#engineering-decisions) · [Run locally](#run-locally)
 
 ## The workflow
 
@@ -34,17 +36,19 @@ The central design constraint: **a skill mentioned on a CV is not proof of profe
 
 ## Security
 
-CI runs secret and dependency scans, SSRF and HTTP privacy regressions,
-document sandbox policy and fail-closed checks, disposable-Postgres authorization
-tests, CodeQL, and pull-request dependency review. Four real Bubblewrap/TeX
-compiler tests run on a trusted local host because GitHub-hosted runners deny
-the required namespace setup. Offline
-AI safeguard tests check structured output, explicit interview-pack consent, and
-prohibited side effects; they do not claim prompt-injection resistance or model
-accuracy. See the [security implementation and evidence](docs/security-implementation-plan.md)
-and [threat model](docs/security-threat-model.md) for controls and residual
-risks. The app has no login, so deployment ingress must remain private. Report
-vulnerabilities through the [security policy](SECURITY.md).
+The security work focuses on the application's actual trust boundaries:
+
+| Boundary | Control | Review the evidence |
+| --- | --- | --- |
+| Job-source HTTP requests | Destination validation, DNS pinning, redirect checks and response limits | [Client](tools/safe_http.ts) · [Tests](tests/safe_http.test.ts) |
+| Uploaded and generated LaTeX | Network and filesystem isolation, disabled shell escape, resource limits and fail-closed compilation | [Sandbox](matching/latex_sandbox.py) · [Tests](tests/test_cv_artifact_safety.py) |
+| User records | User-scoped authorization checks, database constraints and row-level security | [Database authorization tests](tests/security/test_database_authorization.py) |
+| AI responses | Typed outputs, evidence-reference checks and rejection before downstream actions | [Safeguards and limitations](docs/security-threat-model.md#phase-46-deterministic-ai-safeguards) |
+| Code delivery | Secret/dependency scans, CodeQL, pull-request dependency review and security regressions | [Workflows](.github/workflows/) |
+
+**Verification scope:** CI runs portable sandbox-policy checks. Four real Bubblewrap/TeX integration tests run on a trusted local host because GitHub-hosted runners deny the required namespace setup. Offline AI tests verify validation and side effects; they do not establish prompt-injection resistance or model accuracy.
+
+**Deployment boundary:** the app has no login and requires private ingress. The server uses a privileged Supabase credential, so application ownership checks remain essential. See the [implementation evidence](docs/security-implementation-plan.md), [threat model](docs/security-threat-model.md) and [vulnerability reporting policy](SECURITY.md).
 
 ## Inside the project
 
