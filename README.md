@@ -1,4 +1,4 @@
-# AI Job Discovery
+# PairRole
 
 **From scattered listings to informed applications.**
 
