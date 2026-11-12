@@ -1,0 +1,10 @@
+[theme]
+base = "dark"
+primaryColor = "#6C5CE7"
+backgroundColor = "#0F1117"
+secondaryBackgroundColor = "#181B24"
+textColor = "#F3F4F6"
+
+[server]
+# The local app uses a server-side Supabase secret and has no login UI.
+address = "127.0.0.1"

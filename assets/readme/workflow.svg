@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">AI Job Discovery workflow</title>
+  <desc id="desc">Discover listings, check eligibility, then review and rate selected jobs before tracking applications. The user controls evaluation and application decisions.</desc>
+  <rect width="1200" height="300" rx="12" fill="#f6f7f4"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif">
+    <g id="listing-pipeline" fill="#182c30">
+      <text x="54" y="112" font-size="44" font-weight="600">Discover</text>
+      <text x="344" y="112" font-size="44" font-weight="600">Check</text>
+      <text x="650" y="112" font-size="44" font-weight="600">Review</text>
+      <text x="980" y="112" font-size="44" font-weight="600">Track</text>
+    </g>
+    <g id="stage-connections" fill="none" stroke="#536569" stroke-width="2">
+      <path d="M254 98 H310 M300 88 L310 98 L300 108"/>
+      <path d="M492 98 H618 M608 88 L618 98 L608 108"/>
+      <path d="M822 98 H944 M934 88 L944 98 L934 108"/>
+    </g>
+    <g id="stage-context" fill="#536569" font-size="32">
+      <text x="54" y="161">Listings</text>
+      <text x="344" y="161">Eligibility</text>
+      <text x="650" y="161">Fit + evidence</text>
+      <text x="980" y="161">Applications</text>
+    </g>
+    <g id="human-decision-boundary">
+      <path d="M650 192 V208 H1138 V192" fill="none" stroke="#126b61" stroke-width="2"/>
+      <text x="894" y="258" text-anchor="middle" fill="#126b61" font-size="32" font-weight="600">You decide what moves forward</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: secrets
+        name: Scan staged changes for secrets
+        entry: python3 scripts/security/scan_secrets.py staged
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]

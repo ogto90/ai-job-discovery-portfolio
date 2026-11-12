@@ -1,0 +1,55 @@
+rules:
+  - id: python-dynamic-code
+    languages: [python]
+    severity: ERROR
+    message: Do not evaluate dynamic Python code from application data.
+    pattern-either:
+      - pattern: "eval(...)"
+      - pattern: "exec(...)"
+  - id: python-shell-command
+    languages: [python]
+    severity: ERROR
+    message: Use an argument vector with shell=False.
+    pattern-either:
+      - pattern: "subprocess.$FUNC(..., shell=True, ...)"
+      - pattern: "os.system(...)"
+      - pattern: "os.popen(...)"
+  - id: python-disabled-tls
+    languages: [python]
+    severity: ERROR
+    message: Keep certificate verification enabled.
+    pattern-either:
+      - pattern: "requests.$FUNC(..., verify=False, ...)"
+      - pattern: "httpx.$FUNC(..., verify=False, ...)"
+      - pattern: "ssl._create_unverified_context(...)"
+  - id: python-unsafe-deserialization
+    languages: [python]
+    severity: ERROR
+    message: Avoid executable deserialization; use validated data formats.
+    pattern-either:
+      - pattern: "pickle.loads(...)"
+      - pattern: "pickle.load(...)"
+      - pattern: "yaml.unsafe_load(...)"
+      - pattern: "yaml.load(...)"
+  - id: javascript-dynamic-code
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Do not evaluate JavaScript from application data.
+    pattern-either:
+      - pattern: "eval(...)"
+      - pattern: "new Function(...)"
+  - id: javascript-shell-command
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Use spawn or execFile with an argument vector and shell disabled.
+    pattern-either:
+      - pattern: "child_process.exec(...)"
+      - pattern: "child_process.execSync(...)"
+      - pattern: "$CP.spawn(..., { ..., shell: true, ... }, ...)"
+  - id: javascript-disabled-tls
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: Keep certificate verification enabled.
+    pattern-either:
+      - pattern: "$F(..., { ..., rejectUnauthorized: false, ... }, ...)"
+      - pattern: "process.env.NODE_TLS_REJECT_UNAUTHORIZED = \"0\""

@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "location": {
+    "country": "AT",
+    "city": "Vienna",
+    "acceptableRemoteRegions": ["EU", "Europe", "EMEA", "Worldwide"],
+    "acceptableRemoteCountries": [],
+    "relocation": false,
+    "hybridCities": ["Vienna"]
+  },
+  "languages": [
+    {"language": "English", "level": "professional"},
+    {"language": "German", "level": "basic"}
+  ],
+  "rolePreferences": {
+    "targetRoles": ["application_security", "product_security", "software_security", "secure_sdlc", "security_engineering", "vulnerability_management", "security_architecture", "security_management", "incident_response", "grc"],
+    "secondaryRoles": ["security_operations", "soc_detection", "technical_security_consulting", "information_security", "security_program"],
+    "lowInterestRoles": ["endpoint_security", "platform_security", "linux_systems", "cryptography", "iam", "network_security", "sales_gtm", "audit_only", "grc_only", "soc"],
+    "excludedRoles": ["soc_analyst", "cloud_security"]
+  },
+  "skills": [
+    {"skill": "Application Security", "level": "strong"},
+    {"skill": "Secure SDLC", "level": "strong"},
+    {"skill": "SAST", "level": "strong"},
+    {"skill": "SCA", "level": "strong"},
+    {"skill": "vulnerability management", "level": "strong"},
+    {"skill": "vulnerability triage", "level": "strong"},
+    {"skill": "remediation workflows", "level": "strong"},
+    {"skill": "CI/CD security integration", "level": "strong"},
+    {"skill": "developer-facing security", "level": "strong"},
+    {"skill": "incident response", "level": "moderate"},
+    {"skill": "security operations", "level": "moderate"},
+    {"skill": "ISO 27001", "level": "strong"},
+    {"skill": "security governance", "level": "moderate"},
+    {"skill": "risk management", "level": "moderate"},
+    {"skill": "Tenable", "level": "strong"},
+    {"skill": "Acunetix", "level": "strong"},
+    {"skill": "Coverity", "level": "moderate"},
+    {"skill": "Black Duck", "level": "moderate"},
+    {"skill": "Splunk", "level": "moderate"},
+    {"skill": "AWS", "level": "weak"},
+    {"skill": "Azure", "level": "weak"}
+  ],
+  "certifications": ["CISM"],
+  "matchPreferences": {
+    "strengths": ["application_security", "product_security", "secure_sdlc", "sast", "sca", "vulnerability_management", "developer_facing_security", "security_program", "iso_27001"],
+    "moderate": ["security_operations", "incident_response", "security_architecture", "technical_security_consulting", "grc"],
+    "lowInterest": ["deep_cloud", "endpoint_security", "linux_systems", "cryptography", "soc_only", "iam_only", "sales_gtm", "federal_clearance"],
+    "preferredIndustries": ["b2b_software", "product_company", "software_security"],
+    "lowerInterestIndustries": ["federal_defense", "sales"]
+  },
+  "careerTrack": {
+    "prefer": "hands_on_lead",
+    "prioritizeLeadership": true,
+    "allowHandsOnLead": true,
+    "allowPeopleManagement": true,
+    "excluded": ["executive"]
+  },
+  "seniority": {
+    "target": ["senior", "lead"],
+    "acceptable": ["mid", "senior", "staff", "principal", "lead", "manager", "head"],
+    "excluded": ["intern", "graduate", "junior"]
+  },
+  "employmentTypes": ["full_time"],
+  "fieldSources": {
+    "location": "explicit_structured_profile",
+    "languages": "explicit_structured_profile",
+    "rolePreferences": "explicit_structured_profile",
+    "careerTrack": "explicit_structured_profile",
+    "seniority": "explicit_structured_profile",
+    "employmentTypes": "explicit_structured_profile"
+  }
+}

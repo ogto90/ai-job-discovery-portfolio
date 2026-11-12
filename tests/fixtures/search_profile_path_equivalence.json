@@ -1,0 +1,110 @@
+{
+  "profiles": {
+    "security": {
+      "target_titles": ["Security Engineer", "Application Security", "Product Security"],
+      "work_models": ["remote"],
+      "allowed_regions": ["Europe"],
+      "accepted_languages": ["English"],
+      "accepted_employment_types": ["full_time"],
+      "accepted_seniority": ["senior", "lead"]
+    },
+    "software": {
+      "target_titles": ["Software Engineer", "Backend Engineer", "Platform Engineer"],
+      "work_models": ["remote"],
+      "allowed_regions": ["Europe"],
+      "accepted_languages": ["English"],
+      "accepted_employment_types": ["full_time"],
+      "accepted_seniority": ["senior", "lead"]
+    },
+    "sales": {
+      "target_titles": ["Account Executive", "Sales", "Business Development"],
+      "work_models": ["remote"],
+      "allowed_regions": ["Europe"],
+      "accepted_languages": ["English"],
+      "accepted_employment_types": ["full_time"],
+      "accepted_seniority": ["senior", "lead", "manager"]
+    }
+  },
+  "cases": [
+    {
+      "name": "security senior engineer is actionable only for security profile",
+      "profile": "security",
+      "title": "Senior Security Engineer",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Full Time",
+      "description": "English is required. This is a full-time remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": true}
+    },
+    {
+      "name": "software engineer is unrelated to security but actionable for software profile",
+      "profile": "software",
+      "title": "Senior Software Engineer",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Full Time",
+      "description": "English is required. This is a full-time remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": true}
+    },
+    {
+      "name": "platform engineer is actionable for software profile",
+      "profile": "software",
+      "title": "Senior Platform Engineer",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Full Time",
+      "description": "English is required. This is a full-time remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": true}
+    },
+    {
+      "name": "account executive is actionable for sales profile",
+      "profile": "sales",
+      "title": "Senior Account Executive",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Full Time",
+      "description": "English is required. This is a full-time remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": true}
+    },
+    {
+      "name": "business development manager is actionable for sales profile",
+      "profile": "sales",
+      "title": "Senior Business Development Manager",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Full Time",
+      "description": "English is required. This is a full-time remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": true}
+    },
+    {
+      "name": "US-only remote is ineligible for Europe profile",
+      "profile": "security",
+      "title": "Senior Application Security Engineer",
+      "location": "United States",
+      "remote_scope": "Remote United States",
+      "employment_type": "Full Time",
+      "description": "English is required. Remote within the United States only. ",
+      "expected": {"role": "target_match", "location": "ineligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": false}
+    },
+    {
+      "name": "German required is ineligible when English is accepted only",
+      "profile": "software",
+      "title": "Senior Software Engineer",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Full Time",
+      "description": "German is required. English is also used by the team. This is a full-time remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "eligible", "seniority": "eligible", "actionable": true}
+    },
+    {
+      "name": "contract is ineligible when full-time is accepted only",
+      "profile": "sales",
+      "title": "Senior Account Executive",
+      "location": "Europe",
+      "remote_scope": "Remote Europe",
+      "employment_type": "Contract",
+      "description": "English is required. This is a remote role open across Europe. ",
+      "expected": {"role": "target_match", "location": "eligible", "language": "eligible", "employment_type": "ineligible", "seniority": "eligible", "actionable": false}
+    }
+  ]
+}

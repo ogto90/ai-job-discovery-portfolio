@@ -1,0 +1,12 @@
+# Security-sensitive configuration and evidence. GitHub suggests this owner on
+# matching pull requests; required review depends on repository protection.
+.github/workflows/ @ogto90
+.github/dependabot.yml @ogto90
+.github/CODEOWNERS @ogto90
+.gitleaks.toml @ogto90
+.pre-commit-config.yaml @ogto90
+security/ @ogto90
+scripts/security/ @ogto90
+tests/security/ @ogto90
+docs/security-*.md @ogto90
+SECURITY.md @ogto90

@@ -1,0 +1,94 @@
+[
+  {
+    "manifest": ".agents/skills/jobbank-search/cli/package.json",
+    "package": "file-type",
+    "advisory": "GHSA-5v7r-6r5c-r473",
+    "affected_range": ">=13.0.0 <21.3.1",
+    "locked_versions": [
+      "16.5.4"
+    ],
+    "expires": "2026-12-11",
+    "reason": "@bunli/runtime -> @opentui/core -> Jimp pulls the old CommonJS file-type API. These CLIs use command parsing and JSON/text output, not image rendering or Jimp.read on untrusted bytes. A major override breaks the Jimp API; replace/upgrade the upstream renderer dependency before allowing image inputs."
+  },
+  {
+    "manifest": ".agents/skills/jobbank-search/cli/package.json",
+    "package": "zod",
+    "advisory": "GHSA-mrhx-c7xc-m3w5",
+    "affected_range": "<4.6.6",
+    "locked_versions": [
+      "3.25.76",
+      "4.6.7"
+    ],
+    "expires": "2026-12-11",
+    "reason": "Direct CLI validation uses patched Zod 4.6.7. Jimp plugins retain Zod 3 for their image-operation schemas. The CLI does not call image operations or pass untrusted arrays to those schemas. Do not force a cross-major override into Jimp; revisit with its upstream upgrade."
+  },
+  {
+    "manifest": ".agents/skills/jobdanmark-search/cli/package.json",
+    "package": "file-type",
+    "advisory": "GHSA-5v7r-6r5c-r473",
+    "affected_range": ">=13.0.0 <21.3.1",
+    "locked_versions": [
+      "16.5.4"
+    ],
+    "expires": "2026-12-11",
+    "reason": "@bunli/runtime -> @opentui/core -> Jimp pulls the old CommonJS file-type API. These CLIs use command parsing and JSON/text output, not image rendering or Jimp.read on untrusted bytes. A major override breaks the Jimp API; replace/upgrade the upstream renderer dependency before allowing image inputs."
+  },
+  {
+    "manifest": ".agents/skills/jobdanmark-search/cli/package.json",
+    "package": "zod",
+    "advisory": "GHSA-mrhx-c7xc-m3w5",
+    "affected_range": "<4.6.6",
+    "locked_versions": [
+      "3.25.76",
+      "4.6.7"
+    ],
+    "expires": "2026-12-11",
+    "reason": "Direct CLI validation uses patched Zod 4.6.7. Jimp plugins retain Zod 3 for their image-operation schemas. The CLI does not call image operations or pass untrusted arrays to those schemas. Do not force a cross-major override into Jimp; revisit with its upstream upgrade."
+  },
+  {
+    "manifest": ".agents/skills/jobindex-search/cli/package.json",
+    "package": "file-type",
+    "advisory": "GHSA-5v7r-6r5c-r473",
+    "affected_range": ">=13.0.0 <21.3.1",
+    "locked_versions": [
+      "16.5.4"
+    ],
+    "expires": "2026-12-11",
+    "reason": "@bunli/runtime -> @opentui/core -> Jimp pulls the old CommonJS file-type API. These CLIs use command parsing and JSON/text output, not image rendering or Jimp.read on untrusted bytes. A major override breaks the Jimp API; replace/upgrade the upstream renderer dependency before allowing image inputs."
+  },
+  {
+    "manifest": ".agents/skills/jobindex-search/cli/package.json",
+    "package": "zod",
+    "advisory": "GHSA-mrhx-c7xc-m3w5",
+    "affected_range": "<4.6.6",
+    "locked_versions": [
+      "3.25.76",
+      "4.6.7"
+    ],
+    "expires": "2026-12-11",
+    "reason": "Direct CLI validation uses patched Zod 4.6.7. Jimp plugins retain Zod 3 for their image-operation schemas. The CLI does not call image operations or pass untrusted arrays to those schemas. Do not force a cross-major override into Jimp; revisit with its upstream upgrade."
+  },
+  {
+    "manifest": ".agents/skills/jobnet-search/cli/package.json",
+    "package": "file-type",
+    "advisory": "GHSA-5v7r-6r5c-r473",
+    "affected_range": ">=13.0.0 <21.3.1",
+    "locked_versions": [
+      "16.5.4"
+    ],
+    "expires": "2026-12-11",
+    "reason": "@bunli/runtime -> @opentui/core -> Jimp pulls the old CommonJS file-type API. These CLIs use command parsing and JSON/text output, not image rendering or Jimp.read on untrusted bytes. A major override breaks the Jimp API; replace/upgrade the upstream renderer dependency before allowing image inputs."
+  },
+  {
+    "manifest": ".agents/skills/jobnet-search/cli/package.json",
+    "package": "zod",
+    "advisory": "GHSA-mrhx-c7xc-m3w5",
+    "affected_range": "<4.6.6",
+    "locked_versions": [
+      "3.25.76",
+      "4.6.7"
+    ],
+    "expires": "2026-12-11",
+    "reason": "Direct CLI validation uses patched Zod 4.6.7. Jimp plugins retain Zod 3 for their image-operation schemas. The CLI does not call image operations or pass untrusted arrays to those schemas. Do not force a cross-major override into Jimp; revisit with its upstream upgrade."
+  }
+]

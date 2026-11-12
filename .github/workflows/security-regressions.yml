@@ -1,0 +1,65 @@
+name: Security regressions
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '41 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: security-regressions-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  http:
+    name: SSRF and HTTP privacy
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: '1.4.0'
+      - name: Run required HTTP security cases without skips
+        run: python3 scripts/security/run_regressions.py http
+
+  sandbox:
+    name: Document policy and application privacy
+    # Real Bubblewrap/TeX integration is verified on a trusted local host;
+    # hosted Ubuntu denies the namespace setup required by those four cases.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install hashed Python dependencies
+        run: python -m pip install --require-hashes -r requirements-lock.txt
+      - name: Run portable Python security cases without skips
+        run: python scripts/security/run_regressions.py python-portable
+
+  database:
+    name: Disposable database authorization
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install test runner
+        run: python -m pip install --require-hashes -r requirements-lock.txt
+      - name: Replay migrations and test authorization in an isolated container
+        run: python scripts/security/run_regressions.py database

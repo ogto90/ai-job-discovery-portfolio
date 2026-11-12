@@ -1,0 +1,8 @@
+bubblewrap
+util-linux
+texlive-luatex
+texlive-latex-base
+texlive-latex-recommended
+texlive-latex-extra
+texlive-fonts-recommended
+fonts-texgyre

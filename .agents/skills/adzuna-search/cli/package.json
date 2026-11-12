@@ -1,0 +1,21 @@
+{
+  "name": "adzuna-cli",
+  "version": "1.0.0",
+  "description": "CLI for searching Adzuna's official jobs API across configured markets.",
+  "type": "module",
+  "main": "src/cli.ts",
+  "bin": {
+    "adzuna-search": "src/cli.ts"
+  },
+  "scripts": {
+    "start": "bun run src/cli.ts",
+    "test": "bun test --timeout 30000",
+    "smoke": "RUN_LIVE_TESTS=1 bun test tests/live.test.ts --timeout 30000",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bun": "1.3.14",
+    "typescript": "^5.4.0"
+  }
+}
