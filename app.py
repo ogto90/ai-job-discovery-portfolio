@@ -93,7 +93,7 @@ def main() -> None:
 
     try:
         client = SupabaseRestClient(url, secret)
-        st.set_page_config(page_title="Job Research and Application Tracking Tool", page_icon="J", layout="wide")
+        st.set_page_config(page_title="PairRole", page_icon="J", layout="wide")
     except PersistenceError:
         st.error("The Jobs dashboard could not load its server-side data.")
         st.stop()
@@ -226,7 +226,7 @@ def main() -> None:
                     cache_window=int(time.time() // 30),
                 )
                 if context is PENDING:
-                    st.title("Job Research and Application Tracking Tool" if page == "Jobs" else "Applications")
+                    st.title("PairRole" if page == "Jobs" else "Applications")
                     loading_notice(key, revision)
                     return
                 context, flags, change_cursor = context

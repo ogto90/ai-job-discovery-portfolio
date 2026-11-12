@@ -2,7 +2,7 @@
 
 [← Project overview](../README.md)
 
-AI Job Discovery connects job acquisition, evidence-based evaluation, and application tracking in a personal Streamlit workspace. This guide explains the design choices, points to their implementation, and describes what a separate deployment needs.
+PairRole connects job acquisition, evidence-based evaluation, and application tracking in a personal Streamlit workspace. This guide explains the design choices, points to their implementation, and describes what a separate deployment needs.
 
 ## Architecture
 

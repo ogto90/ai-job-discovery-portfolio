@@ -3445,7 +3445,7 @@ def _render_dashboard_body(
     if snapshot is not None:
         jobs = snapshot
     jobs = [replace(job, **_dashboard_job_overrides(user_id, job.id, job=job)) for job in jobs]
-    st.title("Job Research and Application Tracking Tool")
+    st.title("PairRole")
     with st.container():
         if st.session_state.get("bulk_rating_task") or st.session_state.get("bulk_rating_result"):
             _render_bulk_rating_status(user_id)
