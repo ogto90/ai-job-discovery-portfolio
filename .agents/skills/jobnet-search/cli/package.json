@@ -18,8 +18,8 @@
     "zod": "^4.6.6"
   },
   "devDependencies": {
-    "typescript": "^5.4.0",
-    "@types/bun": "1.3.14"
+    "typescript": "^7.0.2",
+    "@types/bun": "1.4.4"
   },
   "overrides": {
     "diff": "^8.0.3"
