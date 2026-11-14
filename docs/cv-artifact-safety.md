@@ -10,9 +10,8 @@ no direct compiler fallback. Existing cached PDFs do not require recompilation.
 
 Install `bubblewrap` and `util-linux` alongside system TeX. Bubblewrap must
 support `--size` for the temporary filesystem limit. Ubuntu 22.04's older
-package does not support that option and fails closed. The security CI uses a
-checksum-verified, non-setuid Bubblewrap 0.13.1 build on Ubuntu 22.04; see the
-[security implementation plan](security-implementation-plan.md). Host security policy
+package does not support that option and fails closed. Hosted CI checks sandbox policy and fail-closed behavior; real compiler
+isolation must be tested on a trusted local host. See [security checks](security-implementation-plan.md). Host security policy
 must permit Bubblewrap namespaces; do not disable sandboxing to work around a
 deployment failure. Run the real isolation regression on the deployment host:
 
