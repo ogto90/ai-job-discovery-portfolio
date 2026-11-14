@@ -30,13 +30,5 @@
     "advisory": "CVE-2026-116686",
     "expires": "2026-12-11",
     "reason": "Semgrep 1.185.0 pins this SDK. CI invokes only local semgrep scan with local rules and metrics disabled; it starts no MCP server, client, HTTP transport or OAuth flow. This tool environment is separate from the application and has no application credentials. Upgrade when Semgrep removes its exact pin; do not run semgrep MCP commands under this exception."
-  },
-  {
-    "manifest": "security/requirements.txt",
-    "package": "opentelemetry-api",
-    "version": "1.37.0",
-    "advisory": "CVE-2026-114603",
-    "expires": "2026-12-11",
-    "reason": "Semgrep pins the 1.37 telemetry family. Local CLI scans disable metrics, expose no HTTP service and accept no inbound tracestate headers. The affected header parser is outside this invocation. Upgrade with a compatible Semgrep telemetry dependency family."
   }
 ]

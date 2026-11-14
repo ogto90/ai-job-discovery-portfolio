@@ -27,9 +27,13 @@ jobs:
         with:
           bun-version: '1.4.0'
       - name: Install hash-verified security tools
-        run: python -m pip install --require-hashes -r security/requirements.txt
+        # Install the complete resolved closure; Semgrep's telemetry pins are
+        # deliberately overridden and checked by the following steps.
+        run: python -m pip install --require-hashes --no-deps -r security/requirements.txt
       - name: Check dependency lock consistency
         run: python scripts/security/check_dependency_locks.py
+      - name: Verify patched telemetry and tool compatibility
+        run: python scripts/security/check_telemetry.py
       - name: Verify vulnerable-code and dependency rejection
         run: python scripts/security/check_code_dependencies.py canaries
       - name: Scan tracked application and CLI source
