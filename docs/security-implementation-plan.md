@@ -60,3 +60,12 @@ check permits only the named Semgrep pin conflicts and rejects other dependency
 conflicts. It also exercises both malformed-header regressions with a timeout.
 Remove the overrides when Semgrep supports a patched family directly; revalidate
 before changing the scanner version. MCP exceptions remain separate.
+
+## Dependency graph
+
+The [snapshot workflow](../.github/workflows/security-dependency-snapshot.yml)
+submits the complete installed security-tool closure on `main`. It checks each
+package against the hashed lock before submission so GitHub sees the versions
+used with the explicit telemetry override. It retains unresolved dependencies,
+including MCP, rather than dismissing their alerts. PR jobs remain read-only;
+only the trusted `main` submission job has repository contents write permission.

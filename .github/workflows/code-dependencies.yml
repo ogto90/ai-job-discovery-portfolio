@@ -34,6 +34,8 @@ jobs:
         run: python scripts/security/check_dependency_locks.py
       - name: Verify patched telemetry and tool compatibility
         run: python scripts/security/check_telemetry.py
+      - name: Test dependency snapshot validation
+        run: python -m unittest discover -s tests/security -p test_dependency_snapshot.py
       - name: Verify vulnerable-code and dependency rejection
         run: python scripts/security/check_code_dependencies.py canaries
       - name: Scan tracked application and CLI source
