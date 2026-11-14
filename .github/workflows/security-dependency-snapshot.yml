@@ -1,0 +1,43 @@
+name: Security dependency snapshot
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: security-dependency-snapshot
+  cancel-in-progress: false
+jobs:
+  submit:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          persist-credentials: false
+          ref: main
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install verified security-tool closure
+        run: python -m pip install --require-hashes --no-deps -r security/requirements.txt
+      - name: Validate resolution and installed compatibility
+        run: |
+          python scripts/security/check_dependency_locks.py
+          python scripts/security/check_telemetry.py
+          python -m unittest discover -s tests/security -p test_dependency_snapshot.py
+      - name: Describe installed packages
+        env:
+          SNAPSHOT_RUN_ID: ${{ github.run_id }}-${{ github.run_attempt }}
+          SNAPSHOT_REPOSITORY: ${{ github.repository }}
+        run: |
+          python scripts/security/dependency_snapshot.py --sha "$(git rev-parse HEAD)" --run-id "$SNAPSHOT_RUN_ID" --repository "$SNAPSHOT_REPOSITORY" > "$RUNNER_TEMP/security-dependencies.json"
+      - name: Submit verified dependency snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SNAPSHOT_REPOSITORY: ${{ github.repository }}
+        run: gh api --method POST "repos/$SNAPSHOT_REPOSITORY/dependency-graph/snapshots" --input "$RUNNER_TEMP/security-dependencies.json"
